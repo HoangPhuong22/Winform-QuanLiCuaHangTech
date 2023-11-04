@@ -1,0 +1,16 @@
+D:\C#\QLCuaHangBanDoCongNGhe\bin\Debug\QLCuaHangBanDoCongNGhe.exe.config
+D:\C#\QLCuaHangBanDoCongNGhe\bin\Debug\QLCuaHangBanDoCongNGhe.exe
+D:\C#\QLCuaHangBanDoCongNGhe\bin\Debug\QLCuaHangBanDoCongNGhe.pdb
+D:\C#\QLCuaHangBanDoCongNGhe\bin\Debug\Guna.UI2.dll
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.csproj.AssemblyReference.cache
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FormMain.resources
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FormDonHang.resources
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.Properties.Resources.resources
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.csproj.GenerateResource.cache
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.csproj.CoreCompileInputs.cache
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.csproj.CopyComplete
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.exe
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.pdb
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FormSanPham.resources
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FormHoaDon.resources
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FormKhachHang.resources
