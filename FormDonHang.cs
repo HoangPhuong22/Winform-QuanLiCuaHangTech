@@ -13,7 +13,6 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QLCuaHangBanDoCongNGhe
 {
@@ -291,6 +290,61 @@ namespace QLCuaHangBanDoCongNGhe
         }
         string mhd = "";
         int slchitiet = 0;
+        public string NumberToWords(decimal number)
+        {
+            string[] ones = { "", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín", "mười", "mười một", "mười hai", "mười ba", "mười bốn", "mười lăm", "mười sáu", "mười bảy", "mười tám", "mười chín" };
+            string[] unit1 = { "", "ngàn", "triệu", "tỷ" };
+            string[] unit2 = { "", "mươi", "trăm" };
+
+            string words = "";
+
+            int group = 0;
+
+            while (number > 0)
+            {
+                int segment = (int)(number % 1000);
+                number /= 1000;
+
+                string segmentWords = "";
+
+                int hundreds = segment / 100;
+                int tens = segment % 100 / 10;
+                int onesDigit = segment % 10;
+
+                if (hundreds > 0)
+                {
+                    segmentWords += ones[hundreds] + " " + unit2[2] + " ";
+                }
+
+                if (tens == 1)
+                {
+                    segmentWords += ones[10 + onesDigit] + " ";
+                }
+                else
+                {
+                    if (tens > 1)
+                    {
+                        segmentWords += ones[tens] + " " + unit2[1] + " ";
+                    }
+
+                    if (onesDigit > 0)
+                    {
+                        segmentWords += ones[onesDigit] + " ";
+                    }
+                }
+
+                if (segment > 0)
+                {
+                    segmentWords += unit1[group] + " ";
+                }
+
+                words = segmentWords + words;
+                group++;
+            }
+
+            return words.Trim();
+        }
+
         private void btnThemHoaDon_Click(object sender, EventArgs e)
         {
             
@@ -330,14 +384,16 @@ namespace QLCuaHangBanDoCongNGhe
                 // Tăng số chi tiết trong một hóa đơn
                 ++slchitiet; 
                 string cthd = "CT" + slchitiet.ToString() + mhd;
+                string donGiaBanText =  txtDonGiaBan.Text.Substring(0, txtDonGiaBan.Text.Length - 3);
 
+                decimal donGiaBan = Convert.ToDecimal(donGiaBanText);
                 // Insert Chi tiết hóa đơn vào hóa đơn
                 int sl = (int)nmSLSanPham.Value;
-                select = "INSERT INTO tChiTietHDB VALUES('" + sl + "', '" + cthd + "', '" + mhd + "', '" + cbMaSanPham.SelectedItem.ToString() + "')";
+                select = "INSERT INTO tChiTietHDB VALUES('" + sl + "', '" + cthd + "', '" + mhd + "', '" + cbMaSanPham.SelectedItem.ToString() + "', '"+sl * donGiaBan+"')";
                 dataConnect.DataChange(select);
 
                 // Gán data vào đơn hàng
-                select = "SELECT * FROM tSanPham sp JOIN tChiTietHDB ct ON ct.MaSanPham = sp.MaSanPham WHERE ct.MaHoaDon = '"+mhd+"'";
+                select = "SELECT sp.TenSanPham , l.TenLoai , th.TenThuongHieu, ct.SoLuongBan, sp.DonGiaban, ct.TongTien FROM tSanPham sp JOIN tChiTietHDB ct ON ct.MaSanPham = sp.MaSanPham JOIN tLoaiSanPham l ON l.MaLoai = sp.MaLoai JOIN tThuongHieu th ON th.MaThuongHieu = sp.MaThuongHieu WHERE ct.MaHoaDon = '"+mhd+"'";
                 DataTable donhang = dataConnect.DataReader(select);
                 dgvDonHang.DataSource = donhang;
 
@@ -354,7 +410,24 @@ namespace QLCuaHangBanDoCongNGhe
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells; // Đặt kích thước của header cột dựa trên nội dung
                 }
 
+                // Cập nhật tổng tiền 
 
+                decimal tongTien = 0;
+
+                foreach (DataGridViewRow row in dgvDonHang.Rows)
+                {
+                    // Kiểm tra xem hàng đó có dữ liệu và giá trị trong cột "TongTien" có hợp lệ không
+                    if (!row.IsNewRow && row.Cells["TongTien"].Value != null)
+                    {
+                        decimal giaTriTongTien = 0;
+                        if (decimal.TryParse(row.Cells["TongTien"].Value.ToString(), out giaTriTongTien))
+                        {
+                            tongTien += giaTriTongTien;
+                        }
+                    }
+                }
+                txtTongTien.Text = string.Format("{0:#,###}", tongTien) + "vnđ";
+                lbTienThanhChu.Text = NumberToWords(tongTien) + "đồng";
 
                 // Xử lí cập nhật lại số lượng tồn
                 btnThem.Enabled = false;
