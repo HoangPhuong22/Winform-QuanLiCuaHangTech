@@ -56,5 +56,11 @@ namespace QLCuaHangBanDoCongNGhe
         {
             OpenForm(new FormHoaDon());
         }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            btnChiNhanh.Text = "Chi nhánh : " + FormLogin.DiaChiCH;
+            OpenForm(new FormDonHang());
+        }
     }
 }

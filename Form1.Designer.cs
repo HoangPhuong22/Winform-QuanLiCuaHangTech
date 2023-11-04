@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.panelLeftMenu = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnChiNhanh = new Guna.UI2.WinForms.Guna2Button();
             this.btnThongTin = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
@@ -56,7 +56,7 @@
             // 
             // panelLeftMenu
             // 
-            this.panelLeftMenu.Controls.Add(this.guna2Button2);
+            this.panelLeftMenu.Controls.Add(this.btnChiNhanh);
             this.panelLeftMenu.Controls.Add(this.btnThongTin);
             this.panelLeftMenu.Controls.Add(this.guna2Button1);
             this.panelLeftMenu.Controls.Add(this.guna2CirclePictureBox1);
@@ -71,22 +71,22 @@
             this.panelLeftMenu.Size = new System.Drawing.Size(291, 748);
             this.panelLeftMenu.TabIndex = 0;
             // 
-            // guna2Button2
+            // btnChiNhanh
             // 
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.guna2Button2.Font = new System.Drawing.Font("Verdana", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button2.Image")));
-            this.guna2Button2.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button2.Location = new System.Drawing.Point(0, 117);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(291, 45);
-            this.guna2Button2.TabIndex = 8;
-            this.guna2Button2.Text = "Chi nhánh: 267 Đường láng";
+            this.btnChiNhanh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnChiNhanh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnChiNhanh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnChiNhanh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnChiNhanh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnChiNhanh.Font = new System.Drawing.Font("Verdana", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChiNhanh.ForeColor = System.Drawing.Color.White;
+            this.btnChiNhanh.Image = ((System.Drawing.Image)(resources.GetObject("btnChiNhanh.Image")));
+            this.btnChiNhanh.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnChiNhanh.Location = new System.Drawing.Point(0, 117);
+            this.btnChiNhanh.Name = "btnChiNhanh";
+            this.btnChiNhanh.Size = new System.Drawing.Size(291, 45);
+            this.btnChiNhanh.TabIndex = 8;
+            this.btnChiNhanh.Text = "Chi nhánh: 267 Đường láng";
             // 
             // btnThongTin
             // 
@@ -259,6 +259,7 @@
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.panelLeftMenu.ResumeLayout(false);
             this.panelLeftMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
@@ -278,7 +279,7 @@
         private Guna.UI2.WinForms.Guna2Button btnHoaDon;
         private Guna.UI2.WinForms.Guna2Button btnKhachHang;
         private Guna.UI2.WinForms.Guna2Button btnSanPham;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button btnChiNhanh;
         private Guna.UI2.WinForms.Guna2Button btnThongTin;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }

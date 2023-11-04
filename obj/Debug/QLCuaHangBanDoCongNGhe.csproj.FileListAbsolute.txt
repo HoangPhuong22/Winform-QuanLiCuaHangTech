@@ -14,3 +14,4 @@ D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.pdb
 D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FormSanPham.resources
 D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FormHoaDon.resources
 D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FormKhachHang.resources
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FormLogin.resources
