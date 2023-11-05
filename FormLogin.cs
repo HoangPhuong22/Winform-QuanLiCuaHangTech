@@ -23,6 +23,7 @@ namespace QLCuaHangBanDoCongNGhe
         public static string TenCuahang { get; set; }
         public static string MaNhanVien { get; set; }
         public static string DiaChiCH { get; set; }
+        public static string MaCH { get; set; }
         private void guna2HtmlLabel2_Click(object sender, EventArgs e)
         {
 
@@ -35,11 +36,12 @@ namespace QLCuaHangBanDoCongNGhe
                 TenCuahang = cbCuaHang.SelectedItem.ToString();
                 TaiKhoan = txtTaiKhoan.Text;
                 string MatKhau = txtMatKhau.Text;
-                string select = "SELECT ch.DiaChi as DiaChi, nv.MaNhanVien as MaNhanVien FROM tTaiKhoan tk JOIN tNhanVien nv ON nv.UserName = tk.UserName JOIN tCuaHang ch ON ch.MaCuaHang = nv.MaCuaHang WHERE ch.TenCuahang = N'" + TenCuahang + "' AND tk.UserName = N'" + TaiKhoan + "' AND tk.PassWord = '" + MatKhau + "'";
+                string select = "SELECT ch.MaCuaHang as MaCuaHang ,ch.DiaChi as DiaChi, nv.MaNhanVien as MaNhanVien FROM tTaiKhoan tk JOIN tNhanVien nv ON nv.UserName = tk.UserName JOIN tCuaHang ch ON ch.MaCuaHang = nv.MaCuaHang WHERE ch.TenCuahang = N'" + TenCuahang + "' AND tk.UserName = N'" + TaiKhoan + "' AND tk.PassWord = '" + MatKhau + "'";
 
                 DataTable result = data.DataReader(select);
                 if (result.Rows.Count > 0)
                 {
+                    MaCH = result.Rows[0]["MaCuaHang"].ToString();
                     DiaChiCH = result.Rows[0]["DiaChi"].ToString();
                     MaNhanVien = result.Rows[0]["MaNhanVien"].ToString();
                     FormMain form = new FormMain();

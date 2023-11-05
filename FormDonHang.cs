@@ -24,7 +24,6 @@ namespace QLCuaHangBanDoCongNGhe
             InitializeComponent();
             dataConnect = new DataConnect();
         }
-
         private void FormDonHang_Load(object sender, EventArgs e)
         {
             string tenCH = FormLogin.TenCuahang;
@@ -150,6 +149,7 @@ namespace QLCuaHangBanDoCongNGhe
             DataTable result = dataConnect.DataReader(select);
             if (result.Rows.Count > 0)
             {
+                string mkh = result.Rows[0]["MaKhachHang"].ToString();
                 lblThongBaoSDT.Text = "Đã chọn khách hàng!";
                 txtTenKhachHang.Text = result.Rows[0]["TenKhachHang"].ToString();
                 txtDiaChi.Text = result.Rows[0]["DiaChi"].ToString();
@@ -159,6 +159,8 @@ namespace QLCuaHangBanDoCongNGhe
 
                 select = "SELECT COUNT(*) FROM tHoaDonBan hd JOIN tKhachHang kh ON kh.MaKhachHang = hd.MaKhachHang WHERE kh.SoDienThoai = '" + sdt + "'";
                 int count = dataConnect.ExecuteScalar(select);
+                select = "UPDATE tKhachHang SET LuotMua = '" + count + "' WHERE MaKhachHang = '" + mkh + "'";
+                dataConnect.DataChange(select);
                 txtSoLanMua.Text = count.ToString();
                 txtUuDai.Text = (count * 0.1).ToString() + "%";
             }
@@ -190,6 +192,7 @@ namespace QLCuaHangBanDoCongNGhe
             txtUuDai.Text = string.Empty;
             txtSoLanMua.Text = string.Empty;
             txtDiaChi.Text = string.Empty;
+
         }
 
         private void txtSoDienThoai_KeyPress(object sender, KeyPressEventArgs e)
@@ -217,6 +220,10 @@ namespace QLCuaHangBanDoCongNGhe
             if (string.IsNullOrEmpty(ten) || string.IsNullOrEmpty(namsinh) || string.IsNullOrEmpty(sdt) || string.IsNullOrEmpty(diaChi))
             {
                 MessageBox.Show("Vui lòng nhập đủ thông tin khách hàng");
+                txtTenKhachHang.ReadOnly = true;
+                txtDiaChi.ReadOnly = true;
+                dtpNgaySinh.Value = DateTime.Now;
+                txtSoDienThoai.ReadOnly = true;
             }
             else
             {
@@ -290,61 +297,6 @@ namespace QLCuaHangBanDoCongNGhe
         }
         string mhd = "";
         int slchitiet = 0;
-        public string NumberToWords(decimal number)
-        {
-            string[] ones = { "", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín", "mười", "mười một", "mười hai", "mười ba", "mười bốn", "mười lăm", "mười sáu", "mười bảy", "mười tám", "mười chín" };
-            string[] unit1 = { "", "ngàn", "triệu", "tỷ" };
-            string[] unit2 = { "", "mươi", "trăm" };
-
-            string words = "";
-
-            int group = 0;
-
-            while (number > 0)
-            {
-                int segment = (int)(number % 1000);
-                number /= 1000;
-
-                string segmentWords = "";
-
-                int hundreds = segment / 100;
-                int tens = segment % 100 / 10;
-                int onesDigit = segment % 10;
-
-                if (hundreds > 0)
-                {
-                    segmentWords += ones[hundreds] + " " + unit2[2] + " ";
-                }
-
-                if (tens == 1)
-                {
-                    segmentWords += ones[10 + onesDigit] + " ";
-                }
-                else
-                {
-                    if (tens > 1)
-                    {
-                        segmentWords += ones[tens] + " " + unit2[1] + " ";
-                    }
-
-                    if (onesDigit > 0)
-                    {
-                        segmentWords += ones[onesDigit] + " ";
-                    }
-                }
-
-                if (segment > 0)
-                {
-                    segmentWords += unit1[group] + " ";
-                }
-
-                words = segmentWords + words;
-                group++;
-            }
-
-            return words.Trim();
-        }
-
         private void btnThemHoaDon_Click(object sender, EventArgs e)
         {
             
@@ -393,7 +345,7 @@ namespace QLCuaHangBanDoCongNGhe
                 dataConnect.DataChange(select);
 
                 // Gán data vào đơn hàng
-                select = "SELECT sp.TenSanPham , l.TenLoai , th.TenThuongHieu, ct.SoLuongBan, sp.DonGiaban, ct.TongTien FROM tSanPham sp JOIN tChiTietHDB ct ON ct.MaSanPham = sp.MaSanPham JOIN tLoaiSanPham l ON l.MaLoai = sp.MaLoai JOIN tThuongHieu th ON th.MaThuongHieu = sp.MaThuongHieu WHERE ct.MaHoaDon = '"+mhd+"'";
+                select = "SELECT sp.TenSanPham , l.TenLoai , th.TenThuongHieu, ct.SoLuongBan, sp.DonGiaban, ct.TongTien, ct.MaChiTietHDB FROM tSanPham sp JOIN tChiTietHDB ct ON ct.MaSanPham = sp.MaSanPham JOIN tLoaiSanPham l ON l.MaLoai = sp.MaLoai JOIN tThuongHieu th ON th.MaThuongHieu = sp.MaThuongHieu WHERE ct.MaHoaDon = '"+mhd+"'";
                 DataTable donhang = dataConnect.DataReader(select);
                 dgvDonHang.DataSource = donhang;
 
@@ -427,7 +379,7 @@ namespace QLCuaHangBanDoCongNGhe
                     }
                 }
                 txtTongTien.Text = string.Format("{0:#,###}", tongTien) + "vnđ";
-                lbTienThanhChu.Text = NumberToWords(tongTien) + "đồng";
+               
 
                 // Xử lí cập nhật lại số lượng tồn
                 btnThem.Enabled = false;
@@ -475,6 +427,13 @@ namespace QLCuaHangBanDoCongNGhe
         
         private void btnXuatHoaDon_Click(object sender, EventArgs e)
         {
+            string select = "UPDATE tHoaDonBan " +
+                         "SET TongTien = (SELECT SUM(ct.TongTien) " +
+                         "FROM tChiTietHDB ct " +
+                         "WHERE ct.MaHoaDon = tHoaDonBan.MaHoaDon) " +
+                         "WHERE tHoaDonBan.MaHoaDon = '" + mhd + "'";
+            dataConnect.DataChange(select);
+
             mhd = "";
             btnThem.Enabled = true;
             slchitiet = 0;
@@ -490,6 +449,10 @@ namespace QLCuaHangBanDoCongNGhe
             dgvDonHang.Rows.Clear(); // Xóa tất cả các hàng
             dgvDonHang.Columns.Clear(); // Xóa tất cả các cột
 
+            // Cap Nhat tong tien
+
+            
+
         }
 
         private void txtTimKiemSDT_KeyPress(object sender, KeyPressEventArgs e)
@@ -500,5 +463,67 @@ namespace QLCuaHangBanDoCongNGhe
                 e.Handled = true;
             }
         }
+
+        private void dgvDonHang_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
+
+        private void dgvDonHang_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                string maChiTietHDB = dgvDonHang.Rows[e.RowIndex].Cells["MaChiTietHDB"].Value.ToString();
+
+                DialogResult result = MessageBox.Show("Bạn có muốn xóa chi tiết hóa đơn có mã " + maChiTietHDB + " không?", "Xác nhận xóa", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Thực hiện xóa chi tiết hóa đơn dựa trên maChiTietHDB
+                    // Ví dụ, sử dụng một đối tượng DataConnect đã được tạo để thực hiện xóa
+                    string sqlDelete = "DELETE FROM tChiTietHDB WHERE MaChiTietHDB = '" + maChiTietHDB + "'";
+                    dataConnect.DataChange(sqlDelete);
+
+                    // Cập nhật bảng dgv_DonHang sau khi xóa
+                    // Ví dụ, load lại dữ liệu từ cơ sở dữ liệu và gán lại cho dgv_DonHang
+                    // dgv_DonHang.DataSource = LoadDataFromDatabase();
+                    // Gán data vào đơn hàng
+                    string select = "SELECT sp.TenSanPham , l.TenLoai , th.TenThuongHieu, ct.SoLuongBan, sp.DonGiaban, ct.TongTien, ct.MaChiTietHDB FROM tSanPham sp JOIN tChiTietHDB ct ON ct.MaSanPham = sp.MaSanPham JOIN tLoaiSanPham l ON l.MaLoai = sp.MaLoai JOIN tThuongHieu th ON th.MaThuongHieu = sp.MaThuongHieu WHERE ct.MaHoaDon = '" + mhd + "'";
+                    DataTable donhang = dataConnect.DataReader(select);
+                    dgvDonHang.DataSource = donhang;
+
+                    //dgvDonHang.Columns[0].HeaderText = "Tên mới";
+                    dgvDonHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                    dgvDonHang.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
+                    dgvDonHang.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                    dgvDonHang.AutoResizeRowHeadersWidth(DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
+                    dgvDonHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                    foreach (DataGridViewColumn column in dgvDonHang.Columns)
+                    {
+                        column.HeaderText = column.HeaderText.Replace("\r\n", " "); // Loại bỏ các ký tự xuống dòng trong tiêu đề cột
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells; // Đặt kích thước của header cột dựa trên nội dung
+                    }
+                }
+                // Cập nhật tổng tiền 
+
+                decimal tongTien = 0;
+
+                foreach (DataGridViewRow row in dgvDonHang.Rows)
+                {
+                    // Kiểm tra xem hàng đó có dữ liệu và giá trị trong cột "TongTien" có hợp lệ không
+                    if (!row.IsNewRow && row.Cells["TongTien"].Value != null)
+                    {
+                        decimal giaTriTongTien = 0;
+                        if (decimal.TryParse(row.Cells["TongTien"].Value.ToString(), out giaTriTongTien))
+                        {
+                            tongTien += giaTriTongTien;
+                        }
+                    }
+                }
+                txtTongTien.Text = string.Format("{0:#,###}", tongTien) + "vnđ";
+            }
+        }
+
     }
 }

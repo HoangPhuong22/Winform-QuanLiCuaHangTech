@@ -1,5 +1,6 @@
 ﻿using QLCuaHangBanDoCongNGhe.Data;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace QLCuaHangBanDoCongNGhe
@@ -34,27 +35,52 @@ namespace QLCuaHangBanDoCongNGhe
 
         private void btnDonHang_Click(object sender, EventArgs e)
         {
+            btnKhachHang.FillColor = Color.FromArgb(53, 45, 125);
+            btnSanPham.FillColor = Color.FromArgb(53, 45, 125);
+            btnHoaDon.FillColor = Color.FromArgb(53, 45, 125);
+            btnThoat.FillColor = Color.FromArgb(53, 45, 125);
+            btnDonHang.FillColor = Color.FromArgb(255, 150, 0);
             OpenForm(new FormDonHang());
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+            btnKhachHang.FillColor = Color.FromArgb(53, 45, 125);
+            btnSanPham.FillColor = Color.FromArgb(53, 45, 125);
+            btnHoaDon.FillColor = Color.FromArgb(53, 45, 125);
+            btnThoat.FillColor = Color.FromArgb(255, 150, 0);
+            btnDonHang.FillColor = Color.FromArgb(53, 45, 125);
         }
 
         private void btnSanPham_Click(object sender, EventArgs e)
         {
             OpenForm(new FormSanPham());
+            btnKhachHang.FillColor = Color.FromArgb(53, 45, 125);
+            btnSanPham.FillColor = Color.FromArgb(255, 150, 0);
+            btnHoaDon.FillColor = Color.FromArgb(53, 45, 125);
+            btnThoat.FillColor = Color.FromArgb(53, 45, 125);
+            btnDonHang.FillColor = Color.FromArgb(53, 45, 125);
         }
 
         private void btnKhachHang_Click(object sender, EventArgs e)
         {
             OpenForm(new FormKhachHang());
+            btnKhachHang.FillColor = Color.FromArgb(255, 150, 0);
+            btnSanPham.FillColor = Color.FromArgb(53, 45, 125);
+            btnHoaDon.FillColor = Color.FromArgb(53, 45, 125);
+            btnThoat.FillColor = Color.FromArgb(53, 45, 125);
+            btnDonHang.FillColor = Color.FromArgb(53, 45, 125);
         }
 
         private void btnHoaDon_Click(object sender, EventArgs e)
         {
             OpenForm(new FormHoaDon());
+            btnKhachHang.FillColor = Color.FromArgb(53, 45, 125);
+            btnSanPham.FillColor = Color.FromArgb(53, 45, 125);
+            btnHoaDon.FillColor = Color.FromArgb(255, 150, 0);
+            btnThoat.FillColor = Color.FromArgb(53, 45, 125);
+            btnDonHang.FillColor = Color.FromArgb(53, 45, 125);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
