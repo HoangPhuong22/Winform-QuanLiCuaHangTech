@@ -24,6 +24,8 @@ namespace QLCuaHangBanDoCongNGhe
         public static string MaNhanVien { get; set; }
         public static string DiaChiCH { get; set; }
         public static string MaCH { get; set; }
+        public static string AnhNhanVien { get; set ; }
+        public static string TenNhanVien { get ; set ; }
         private void guna2HtmlLabel2_Click(object sender, EventArgs e)
         {
 
@@ -36,25 +38,33 @@ namespace QLCuaHangBanDoCongNGhe
                 TenCuahang = cbCuaHang.SelectedItem.ToString();
                 TaiKhoan = txtTaiKhoan.Text;
                 string MatKhau = txtMatKhau.Text;
-                string select = "SELECT ch.MaCuaHang as MaCuaHang ,ch.DiaChi as DiaChi, nv.MaNhanVien as MaNhanVien, tk.Role FROM tTaiKhoan tk JOIN tNhanVien nv ON nv.UserName = tk.UserName JOIN tCuaHang ch ON ch.MaCuaHang = nv.MaCuaHang WHERE ch.TenCuahang = N'" + TenCuahang + "' AND tk.UserName = N'" + TaiKhoan + "' AND tk.PassWord = '" + MatKhau + "'";
+                string select = "SELECT nv.TrangThai,ch.MaCuaHang as MaCuaHang ,ch.DiaChi as DiaChi, nv.MaNhanVien as MaNhanVien, tk.Role, nv.AnhNhanVien, nv.TenNhanVien FROM tTaiKhoan tk JOIN tNhanVien nv ON nv.UserName = tk.UserName JOIN tCuaHang ch ON ch.MaCuaHang = nv.MaCuaHang WHERE ch.TenCuahang = N'" + TenCuahang + "' AND tk.UserName = N'" + TaiKhoan + "' AND tk.PassWord = '" + MatKhau + "'";
 
                 DataTable result = data.DataReader(select);
                 if (result.Rows.Count > 0)
                 {
-                    if (result.Rows[0]["Role"].ToString() == "Admin")
-                    {
-                        FormAdmin form = new FormAdmin();
-                        form.ShowDialog();
-                        this.Hide();
-                    }   
-                    else
+                    if (result.Rows[0]["Role"].ToString() == "Admin" && result.Rows[0]["TrangThai"].ToString() == "Đang làm")
                     {
                         MaCH = result.Rows[0]["MaCuaHang"].ToString();
                         DiaChiCH = result.Rows[0]["DiaChi"].ToString();
                         MaNhanVien = result.Rows[0]["MaNhanVien"].ToString();
+                        AnhNhanVien = result.Rows[0]["AnhNhanVien"].ToString();
+                        TenNhanVien = result.Rows[0]["TenNhanVien"].ToString();
+                        FormAdmin form = new FormAdmin();
+                        form.ShowDialog();
+                      
+                    }   
+                    else if(result.Rows[0]["TrangThai"].ToString() == "Đang làm")
+                    {
+                        MaCH = result.Rows[0]["MaCuaHang"].ToString();
+                        DiaChiCH = result.Rows[0]["DiaChi"].ToString();
+                        MaNhanVien = result.Rows[0]["MaNhanVien"].ToString();
+                        AnhNhanVien = result.Rows[0]["AnhNhanVien"].ToString();
+                        TenNhanVien = result.Rows[0]["TenNhanVien"].ToString();
                         FormMain form = new FormMain();
                         form.ShowDialog();
-                    }    
+                    }  
+                    else lbValidate.Text = "Vui lòng nhập tài khoản và mật khẩu chính xác!";
                 }
                 else
                 {
@@ -88,6 +98,11 @@ namespace QLCuaHangBanDoCongNGhe
         }
 
         private void cbCuaHang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }

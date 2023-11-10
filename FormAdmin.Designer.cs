@@ -33,9 +33,8 @@
             this.panelNavbar = new Guna.UI2.WinForms.Guna2Panel();
             this.panelLeftMenu = new Guna.UI2.WinForms.Guna2Panel();
             this.btnChiNhanh = new Guna.UI2.WinForms.Guna2Button();
-            this.btnThongTin = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.ptbAnhDaiDien = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.btnThoat = new Guna.UI2.WinForms.Guna2Button();
             this.btnQLHL = new Guna.UI2.WinForms.Guna2Button();
             this.btnTaiKhoan = new Guna.UI2.WinForms.Guna2Button();
@@ -43,8 +42,10 @@
             this.btnQuanLiCH = new Guna.UI2.WinForms.Guna2Button();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.panelBody = new System.Windows.Forms.Panel();
+            this.btnDoiAnh = new Guna.UI2.WinForms.Guna2Button();
+            this.btnTen = new Guna.UI2.WinForms.Guna2Button();
             this.panelLeftMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbAnhDaiDien)).BeginInit();
             this.SuspendLayout();
             // 
             // panelNavbar
@@ -59,10 +60,11 @@
             // panelLeftMenu
             // 
             this.panelLeftMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(45)))), ((int)(((byte)(125)))));
+            this.panelLeftMenu.Controls.Add(this.btnTen);
+            this.panelLeftMenu.Controls.Add(this.btnDoiAnh);
             this.panelLeftMenu.Controls.Add(this.btnChiNhanh);
-            this.panelLeftMenu.Controls.Add(this.btnThongTin);
             this.panelLeftMenu.Controls.Add(this.guna2Button1);
-            this.panelLeftMenu.Controls.Add(this.guna2CirclePictureBox1);
+            this.panelLeftMenu.Controls.Add(this.ptbAnhDaiDien);
             this.panelLeftMenu.Controls.Add(this.btnThoat);
             this.panelLeftMenu.Controls.Add(this.btnQLHL);
             this.panelLeftMenu.Controls.Add(this.btnTaiKhoan);
@@ -85,28 +87,11 @@
             this.btnChiNhanh.ForeColor = System.Drawing.Color.White;
             this.btnChiNhanh.Image = ((System.Drawing.Image)(resources.GetObject("btnChiNhanh.Image")));
             this.btnChiNhanh.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnChiNhanh.Location = new System.Drawing.Point(0, 117);
+            this.btnChiNhanh.Location = new System.Drawing.Point(0, 176);
             this.btnChiNhanh.Name = "btnChiNhanh";
             this.btnChiNhanh.Size = new System.Drawing.Size(291, 45);
             this.btnChiNhanh.TabIndex = 8;
             this.btnChiNhanh.Text = "Chi nhánh: 267 Đường láng";
-            // 
-            // btnThongTin
-            // 
-            this.btnThongTin.BorderRadius = 10;
-            this.btnThongTin.DefaultAutoSize = true;
-            this.btnThongTin.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnThongTin.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnThongTin.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnThongTin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnThongTin.FillColor = System.Drawing.Color.Firebrick;
-            this.btnThongTin.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThongTin.ForeColor = System.Drawing.Color.White;
-            this.btnThongTin.Location = new System.Drawing.Point(149, 49);
-            this.btnThongTin.Name = "btnThongTin";
-            this.btnThongTin.Size = new System.Drawing.Size(113, 30);
-            this.btnThongTin.TabIndex = 7;
-            this.btnThongTin.Text = "Thông tin";
             // 
             // guna2Button1
             // 
@@ -125,17 +110,17 @@
             this.guna2Button1.TabIndex = 6;
             this.guna2Button1.Text = "Admin";
             // 
-            // guna2CirclePictureBox1
+            // ptbAnhDaiDien
             // 
-            this.guna2CirclePictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2CirclePictureBox1.Image")));
-            this.guna2CirclePictureBox1.ImageRotate = 0F;
-            this.guna2CirclePictureBox1.Location = new System.Drawing.Point(12, 0);
-            this.guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
-            this.guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CirclePictureBox1.Size = new System.Drawing.Size(109, 110);
-            this.guna2CirclePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2CirclePictureBox1.TabIndex = 5;
-            this.guna2CirclePictureBox1.TabStop = false;
+            this.ptbAnhDaiDien.Image = ((System.Drawing.Image)(resources.GetObject("ptbAnhDaiDien.Image")));
+            this.ptbAnhDaiDien.ImageRotate = 0F;
+            this.ptbAnhDaiDien.Location = new System.Drawing.Point(12, 0);
+            this.ptbAnhDaiDien.Name = "ptbAnhDaiDien";
+            this.ptbAnhDaiDien.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.ptbAnhDaiDien.Size = new System.Drawing.Size(109, 110);
+            this.ptbAnhDaiDien.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbAnhDaiDien.TabIndex = 5;
+            this.ptbAnhDaiDien.TabStop = false;
             // 
             // btnThoat
             // 
@@ -149,7 +134,7 @@
             this.btnThoat.ForeColor = System.Drawing.Color.White;
             this.btnThoat.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.Image")));
             this.btnThoat.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnThoat.Location = new System.Drawing.Point(-67, 601);
+            this.btnThoat.Location = new System.Drawing.Point(-88, 583);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(286, 61);
             this.btnThoat.TabIndex = 4;
@@ -168,7 +153,7 @@
             this.btnQLHL.ForeColor = System.Drawing.Color.White;
             this.btnQLHL.Image = ((System.Drawing.Image)(resources.GetObject("btnQLHL.Image")));
             this.btnQLHL.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnQLHL.Location = new System.Drawing.Point(-33, 397);
+            this.btnQLHL.Location = new System.Drawing.Point(-36, 408);
             this.btnQLHL.Name = "btnQLHL";
             this.btnQLHL.Size = new System.Drawing.Size(286, 61);
             this.btnQLHL.TabIndex = 3;
@@ -187,7 +172,7 @@
             this.btnTaiKhoan.ForeColor = System.Drawing.Color.White;
             this.btnTaiKhoan.Image = ((System.Drawing.Image)(resources.GetObject("btnTaiKhoan.Image")));
             this.btnTaiKhoan.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnTaiKhoan.Location = new System.Drawing.Point(-51, 492);
+            this.btnTaiKhoan.Location = new System.Drawing.Point(-51, 498);
             this.btnTaiKhoan.Name = "btnTaiKhoan";
             this.btnTaiKhoan.Size = new System.Drawing.Size(286, 61);
             this.btnTaiKhoan.TabIndex = 2;
@@ -206,7 +191,7 @@
             this.btnQuanLiSP.ForeColor = System.Drawing.Color.White;
             this.btnQuanLiSP.Image = ((System.Drawing.Image)(resources.GetObject("btnQuanLiSP.Image")));
             this.btnQuanLiSP.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnQuanLiSP.Location = new System.Drawing.Point(-51, 289);
+            this.btnQuanLiSP.Location = new System.Drawing.Point(-51, 319);
             this.btnQuanLiSP.Name = "btnQuanLiSP";
             this.btnQuanLiSP.Size = new System.Drawing.Size(286, 61);
             this.btnQuanLiSP.TabIndex = 1;
@@ -225,7 +210,7 @@
             this.btnQuanLiCH.ForeColor = System.Drawing.Color.White;
             this.btnQuanLiCH.Image = ((System.Drawing.Image)(resources.GetObject("btnQuanLiCH.Image")));
             this.btnQuanLiCH.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnQuanLiCH.Location = new System.Drawing.Point(-51, 195);
+            this.btnQuanLiCH.Location = new System.Drawing.Point(-51, 238);
             this.btnQuanLiCH.Name = "btnQuanLiCH";
             this.btnQuanLiCH.Size = new System.Drawing.Size(286, 61);
             this.btnQuanLiCH.TabIndex = 0;
@@ -247,6 +232,39 @@
             this.panelBody.Size = new System.Drawing.Size(1403, 661);
             this.panelBody.TabIndex = 4;
             // 
+            // btnDoiAnh
+            // 
+            this.btnDoiAnh.BorderRadius = 10;
+            this.btnDoiAnh.DefaultAutoSize = true;
+            this.btnDoiAnh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnDoiAnh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnDoiAnh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnDoiAnh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnDoiAnh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnDoiAnh.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDoiAnh.ForeColor = System.Drawing.Color.White;
+            this.btnDoiAnh.Location = new System.Drawing.Point(149, 58);
+            this.btnDoiAnh.Name = "btnDoiAnh";
+            this.btnDoiAnh.Size = new System.Drawing.Size(97, 30);
+            this.btnDoiAnh.TabIndex = 9;
+            this.btnDoiAnh.Text = "Đổi ảnh";
+            this.btnDoiAnh.Click += new System.EventHandler(this.btnDoiAnh_Click);
+            // 
+            // btnTen
+            // 
+            this.btnTen.BorderRadius = 10;
+            this.btnTen.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnTen.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnTen.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnTen.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnTen.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnTen.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold);
+            this.btnTen.ForeColor = System.Drawing.Color.White;
+            this.btnTen.Location = new System.Drawing.Point(3, 115);
+            this.btnTen.Name = "btnTen";
+            this.btnTen.Size = new System.Drawing.Size(282, 43);
+            this.btnTen.TabIndex = 12;
+            // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -262,7 +280,7 @@
             this.Load += new System.EventHandler(this.FormAdmin_Load);
             this.panelLeftMenu.ResumeLayout(false);
             this.panelLeftMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbAnhDaiDien)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -272,9 +290,8 @@
         private Guna.UI2.WinForms.Guna2Panel panelNavbar;
         private Guna.UI2.WinForms.Guna2Panel panelLeftMenu;
         private Guna.UI2.WinForms.Guna2Button btnChiNhanh;
-        private Guna.UI2.WinForms.Guna2Button btnThongTin;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox ptbAnhDaiDien;
         private Guna.UI2.WinForms.Guna2Button btnThoat;
         private Guna.UI2.WinForms.Guna2Button btnQLHL;
         private Guna.UI2.WinForms.Guna2Button btnTaiKhoan;
@@ -282,5 +299,7 @@
         private Guna.UI2.WinForms.Guna2Button btnQuanLiCH;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private System.Windows.Forms.Panel panelBody;
+        private Guna.UI2.WinForms.Guna2Button btnDoiAnh;
+        private Guna.UI2.WinForms.Guna2Button btnTen;
     }
 }

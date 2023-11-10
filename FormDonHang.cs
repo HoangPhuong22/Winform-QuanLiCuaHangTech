@@ -27,7 +27,7 @@ namespace QLCuaHangBanDoCongNGhe
         private void FormDonHang_Load(object sender, EventArgs e)
         {
             string tenCH = FormLogin.TenCuahang;
-            string select = "SELECT ct.MaSanPham FROM tSanPham sp JOIN tChiTietHDN ct ON ct.MaSanPham = sp.MaSanPham JOIN tHoaDonNhap hd ON hd.MaHoaDonNhap = ct.MaHoaDonNhap JOIN tCuaHang ch ON ch.MaCuaHang = hd.MaCuaHang WHERE ch.TenCuaHang = N'"+tenCH+"'";
+            string select = "SELECT ct.MaSanPham,sp.TrangThai FROM tSanPham sp JOIN tChiTietHDN ct ON ct.MaSanPham = sp.MaSanPham JOIN tHoaDonNhap hd ON hd.MaHoaDonNhap = ct.MaHoaDonNhap JOIN tCuaHang ch ON ch.MaCuaHang = hd.MaCuaHang WHERE ch.TenCuaHang = N'"+tenCH+"'";
             DataTable result = dataConnect.DataReader(select);
             // ẩn các btn
             btnLuu.Enabled = false;
@@ -39,7 +39,7 @@ namespace QLCuaHangBanDoCongNGhe
             {
                 foreach (DataRow row in result.Rows)
                 {
-                    cbMaSanPham.Items.Add(row["MaSanPham"].ToString());
+                    if(row["TrangThai"].ToString() == "Hiện") cbMaSanPham.Items.Add(row["MaSanPham"].ToString());
                 }
             }
         }

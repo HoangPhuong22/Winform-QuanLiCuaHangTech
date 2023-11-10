@@ -248,6 +248,7 @@
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(497, 722);
             this.guna2Panel2.TabIndex = 1;
+            this.guna2Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel2_Paint);
             // 
             // btnThoat
             // 
@@ -363,6 +364,7 @@
             this.txtMatKhau.IconLeft = ((System.Drawing.Image)(resources.GetObject("txtMatKhau.IconLeft")));
             this.txtMatKhau.IconLeftSize = new System.Drawing.Size(30, 30);
             this.txtMatKhau.Location = new System.Drawing.Point(55, 419);
+            this.txtMatKhau.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMatKhau.Name = "txtMatKhau";
             this.txtMatKhau.PasswordChar = '●';
             this.txtMatKhau.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -390,6 +392,7 @@
             this.txtTaiKhoan.IconLeft = ((System.Drawing.Image)(resources.GetObject("txtTaiKhoan.IconLeft")));
             this.txtTaiKhoan.IconLeftSize = new System.Drawing.Size(30, 30);
             this.txtTaiKhoan.Location = new System.Drawing.Point(55, 358);
+            this.txtTaiKhoan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTaiKhoan.Name = "txtTaiKhoan";
             this.txtTaiKhoan.PasswordChar = '\0';
             this.txtTaiKhoan.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));

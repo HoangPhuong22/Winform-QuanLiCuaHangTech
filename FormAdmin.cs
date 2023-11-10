@@ -1,8 +1,10 @@
-﻿using System;
+﻿using QLCuaHangBanDoCongNGhe.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ namespace QLCuaHangBanDoCongNGhe
     public partial class FormAdmin : Form
     {
         private Form formTong = null;
+        DataConnect data = new DataConnect();
         public FormAdmin()
         {
             InitializeComponent();
@@ -94,7 +97,67 @@ namespace QLCuaHangBanDoCongNGhe
         {
             this.MinimumSize = new Size(1361, 600); // Đặt kích thước tối thiểu cho Form.
             this.StartPosition = FormStartPosition.CenterScreen;
+            btnTen.Text = FormLogin.TenNhanVien;
             OpenForm(new FAdminCH());
+            // Đường dẫn của ảnh bạn muốn hiển thị
+            string imagePath = "D:\\Winform-QuanLiCuaHangTech\\bin\\Debug\\Images\\" + FormLogin.AnhNhanVien;
+
+            // Kiểm tra xem tệp ảnh có tồn tại không trước khi hiển thị
+            if (File.Exists(imagePath))
+            {
+                // Hiển thị ảnh trên PictureBox
+                ptbAnhDaiDien.Image = Image.FromFile(imagePath);
+            }
+            else
+            {
+                // Hiển thị một hình ảnh mặc định hoặc thông báo lỗi nếu tệp không tồn tại
+                // ptbAnhDaiDien.Image = yourDefaultImage; // Thay yourDefaultImage bằng hình ảnh mặc định của bạn
+                MessageBox.Show("Không thể tìm thấy tệp ảnh!");
+            }
+        }
+
+        private void btnDoiAnh_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            // Thiết lập các thuộc tính cho hộp thoại chọn tệp
+            openFileDialog1.Title = "Chọn ảnh";
+            openFileDialog1.Filter = "Tất cả các tệp|*.*|Ảnh|*.jpg;*.png;*.gif;*.bmp";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // Lấy đường dẫn của tệp đã chọn
+                    string selectedImagePath = openFileDialog1.FileName;
+
+                    // Thiết lập đường dẫn đích để sao chép tệp
+                    string destinationPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "D:\\Winform-QuanLiCuaHangTech\\bin\\Debug\\Images\\");
+
+                    // Kiểm tra xem thư mục đích đã tồn tại chưa, nếu chưa thì tạo mới
+                    if (!Directory.Exists(destinationPath))
+                    {
+                        Directory.CreateDirectory(destinationPath);
+                    }
+
+                    // Tạo tên mới cho tệp ảnh bằng cách sử dụng ngày và giờ hiện tại
+                    string newFileName = "Image_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + Path.GetExtension(selectedImagePath);
+                    string select = "UPDATE tNhanVien SET AnhNhanVien = '" + newFileName + "' WHERE MaNhanVien = '" + FormLogin.MaNhanVien + "'";
+                    data.DataChange(select);
+                    // Tạo đường dẫn đến tệp mới
+                    string destinationFilePath = Path.Combine(destinationPath, newFileName);
+
+                    // Sao chép tệp từ đường dẫn nguồn đến đường dẫn đích
+                    File.Copy(selectedImagePath, destinationFilePath, true);
+
+                    // Hiển thị ảnh trên PictureBox
+                    ptbAnhDaiDien.Image = Image.FromFile(destinationFilePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+                }
+            }
         }
     }
 }

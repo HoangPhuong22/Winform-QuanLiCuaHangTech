@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace QLCuaHangBanDoCongNGhe
         }
         void LoadNV()
         {
-            string select = "SELECT nv.TenNhanVien, nv.SoDienThoai,nv.NamSinh, nv.DiaChi, ch.TenCuaHang,nv.TrangThai, nv.MaNhanVien FROM tNhanVien nv JOIN tCuaHang ch ON ch.MaCuaHang = nv.MaCuahang";
+            string select = "SELECT nv.TenNhanVien, nv.SoDienThoai,nv.NamSinh, nv.DiaChi, ch.TenCuaHang,nv.TrangThai, nv.MaNhanVien, nv.AnhNhanVien FROM tNhanVien nv JOIN tCuaHang ch ON ch.MaCuaHang = nv.MaCuahang";
             DataTable dt = data.DataReader(select);
             dtgvNhanVien.DataSource = dt;
             dtgvNhanVien.Columns[0].HeaderText = "Tên nhân viên";
@@ -31,7 +32,7 @@ namespace QLCuaHangBanDoCongNGhe
             dtgvNhanVien.Columns[5].HeaderText = "Trạng thái";
 
             dtgvNhanVien.Columns["MaNhanVien"].Visible = false;
-
+            dtgvNhanVien.Columns["AnhNhanVien"].Visible = false;
             dtgvNhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dtgvNhanVien.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             dtgvNhanVien.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -87,6 +88,7 @@ namespace QLCuaHangBanDoCongNGhe
             btnKhoiPhuc.Enabled = false;
             btnXoa.Enabled = false;
             btnSuaTK.Enabled = false;
+            
             cbRole.Items.Add("Admin");
             cbRole.Items.Add("Nhân viên");
         }
@@ -106,7 +108,24 @@ namespace QLCuaHangBanDoCongNGhe
                     btnKhoiPhuc.Enabled = true;
                     btnThem.Enabled = false;
                     mnv = dtgvNhanVien.Rows[e.RowIndex].Cells["MaNhanVien"].Value.ToString();
+                    string anh = dtgvNhanVien.Rows[e.RowIndex].Cells["AnhNhanVien"].Value.ToString();
+                    // Hiện ảnh 
+                    btnDoiAnh.Enabled = true;
+                    string imagePath = "D:\\Winform-QuanLiCuaHangTech\\bin\\Debug\\Images\\" + anh;
 
+                    // Kiểm tra xem tệp ảnh có tồn tại không trước khi hiển thị
+                    if (File.Exists(imagePath))
+                    {
+                        // Hiển thị ảnh trên PictureBox
+                        ptbAnhDaiDien.Image = Image.FromFile(imagePath);
+                    }
+                    else
+                    {
+                        // Hiển thị một hình ảnh mặc định hoặc thông báo lỗi nếu tệp không tồn tại
+                        // ptbAnhDaiDien.Image = yourDefaultImage; // Thay yourDefaultImage bằng hình ảnh mặc định của bạn
+                        MessageBox.Show("Không thể tìm thấy tệp ảnh!");
+                    }
+                    
 
                     btnSuaTK.Enabled = true;
                     txtUSN.ReadOnly = true;
@@ -138,6 +157,7 @@ namespace QLCuaHangBanDoCongNGhe
                 }
                 catch 
                 {
+                    btnDoiAnh.Enabled = true;
                     btnSua.Enabled = false;
                     btnXoa.Enabled = false;
                     btnKhoiPhuc.Enabled = false;
@@ -149,10 +169,12 @@ namespace QLCuaHangBanDoCongNGhe
                     mnv = "";
                     btnSuaTK.Enabled = false;
                     txtUSN.ReadOnly = false;
+                    dtgvTaiKhoan.DataSource = null;
                 }
             }
             else
             {
+                btnDoiAnh.Enabled = true;
                 btnSua.Enabled = false;
                 btnXoa.Enabled = false;
                 btnKhoiPhuc.Enabled = false;
@@ -163,6 +185,7 @@ namespace QLCuaHangBanDoCongNGhe
                 txtSDT.Text = "";
                 mnv = "";
                 btnSuaTK.Enabled = false;
+                dtgvTaiKhoan.DataSource = null;
                 txtUSN.ReadOnly = false;
             }    
         }
@@ -229,7 +252,9 @@ namespace QLCuaHangBanDoCongNGhe
             {
                 MessageBox.Show("Vui lòng nhập số điện thoại hợp lệ!"); return;
             }
-            string select = "UPDATE tNhanVien SET TenNhanVien = N'" + txtTenNV.Text + "',DiaChi = N'" + txtDC.Text + "',SoDienThoai = N'" + txtSDT.Text + "' WHERE MaNhanVien = '" + mnv + "'";
+            string select = "";
+            if (tenAnh == "") select = "UPDATE tNhanVien SET TenNhanVien = N'" + txtTenNV.Text + "',DiaChi = N'" + txtDC.Text + "',SoDienThoai = N'" + txtSDT.Text + "' WHERE MaNhanVien = '" + mnv + "'";
+            else select = "UPDATE tNhanVien SET TenNhanVien = N'" + txtTenNV.Text + "',DiaChi = N'" + txtDC.Text + "',SoDienThoai = N'" + txtSDT.Text + "',AnhNhanVien ='"+tenAnh+"' WHERE MaNhanVien = '" + mnv + "'";
             data.DataChange(select);
             LoadNV();
         }
@@ -270,6 +295,10 @@ namespace QLCuaHangBanDoCongNGhe
             {
                 MessageBox.Show("Vui lòng chọn quyền cho tài khoản"); return;
             }
+            if (tenAnh == "")
+            {
+                MessageBox.Show("Vui lòng chọn ảnh nhân viên!"); return;
+            }    
             string check = "SELECT * FROM tTaiKhoan WHERE UserName = N'" + txtUSN.Text + "'";
             DataTable i = data.DataReader(check);
             if(i.Rows.Count > 0)
@@ -282,7 +311,7 @@ namespace QLCuaHangBanDoCongNGhe
             select = "SELECT MaCuaHang FROM tCuaHang WHERE TenCuaHang = N'" + cbCuaHang.SelectedItem.ToString() + "'";
             DataTable tmp = data.DataReader(select);
             string tt = "Đang làm";
-            select = "INSERT INTO tNhanVien VALUES(N'" + txtTenNV.Text + "', '" + mnv + "', '" + txtSDT.Text + "', '" + dtpNgaySinh.Value.ToString("yyyy-MM-dd") + "',N'" + txtDC.Text + "', '" + tmp.Rows[0]["MaCuaHang"].ToString() + "', N'" + txtUSN.Text + "', N'"+tt+"')";
+            select = "INSERT INTO tNhanVien VALUES(N'" + txtTenNV.Text + "', '" + mnv + "', '" + txtSDT.Text + "', '" + dtpNgaySinh.Value.ToString("yyyy-MM-dd") + "',N'" + txtDC.Text + "', '" + tmp.Rows[0]["MaCuaHang"].ToString() + "', N'" + txtUSN.Text + "', N'"+tt+"', '"+tenAnh+"')";
             data.DataChange(select);
 
             LoadNV();
@@ -297,7 +326,7 @@ namespace QLCuaHangBanDoCongNGhe
                 cbRole.SelectedItem = dtgvTaiKhoan.Rows[e.RowIndex].Cells["Role"].Value.ToString();
             }
         }
-
+        string tenAnh = "";
         private void btnSuaTK_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtUSN.Text))
@@ -312,7 +341,7 @@ namespace QLCuaHangBanDoCongNGhe
             {
                 MessageBox.Show("Vui lòng chọn quyền cho tài khoản"); return;
             }
-            string select = "UPDATE tTaiKhoan SET PassWord = N'" + txtPW.Text + "', Role = N'" + cbRole.SelectedItem.ToString() + "'";
+            string select = "UPDATE tTaiKhoan SET PassWord = N'" + txtPW.Text + "', Role = N'" + cbRole.SelectedItem.ToString() +"' FROM tTaiKhoan JOIN tNhanVien ON tNhanVien.UserName = tTaiKhoan.UserName WHERE tNhanVien.MaNhanVien = '"+mnv+"'";
             data.DataChange(select);
 
 
@@ -366,6 +395,50 @@ namespace QLCuaHangBanDoCongNGhe
             {
                 column.HeaderText = column.HeaderText.Replace("\r\n", " "); // Loại bỏ các ký tự xuống dòng trong tiêu đề cột
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells; // Đặt kích thước của header cột dựa trên nội dung
+            }
+        }
+
+        private void btnDoiAnh_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            // Thiết lập các thuộc tính cho hộp thoại chọn tệp
+            openFileDialog1.Title = "Chọn ảnh";
+            openFileDialog1.Filter = "Ảnh (*.png;*.jpg;*.jpeg;*.webp)|*.png;*.jpg;*.jpeg;*.webp";
+
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // Lấy đường dẫn của tệp đã chọn
+                    string selectedImagePath = openFileDialog1.FileName;
+
+                    // Thiết lập đường dẫn đích để sao chép tệp
+                    string destinationPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "D:\\Winform-QuanLiCuaHangTech\\bin\\Debug\\Images\\");
+
+                    // Kiểm tra xem thư mục đích đã tồn tại chưa, nếu chưa thì tạo mới
+                    if (!Directory.Exists(destinationPath))
+                    {
+                        Directory.CreateDirectory(destinationPath);
+                    }
+
+                    // Tạo tên mới cho tệp ảnh bằng cách sử dụng ngày và giờ hiện tại
+                    string newFileName = "Image_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + Path.GetExtension(selectedImagePath);
+                    tenAnh = newFileName;
+                    // Tạo đường dẫn đến tệp mới
+                    string destinationFilePath = Path.Combine(destinationPath, newFileName);
+
+                    // Sao chép tệp từ đường dẫn nguồn đến đường dẫn đích
+                    File.Copy(selectedImagePath, destinationFilePath, true);
+
+                    // Hiển thị ảnh trên PictureBox
+                    ptbAnhDaiDien.Image = Image.FromFile(destinationFilePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+                }
             }
         }
     }
