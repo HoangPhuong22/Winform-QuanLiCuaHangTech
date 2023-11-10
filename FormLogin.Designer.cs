@@ -170,7 +170,7 @@
             this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.Lime;
             this.guna2HtmlLabel3.Location = new System.Drawing.Point(145, 364);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(482, 37);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(504, 37);
             this.guna2HtmlLabel3.TabIndex = 5;
             this.guna2HtmlLabel3.Text = "Quản lí cửa hàng công nghệ";
             // 
@@ -216,19 +216,20 @@
             this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(12, 289);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(846, 32);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(852, 32);
             this.guna2HtmlLabel2.TabIndex = 1;
             this.guna2HtmlLabel2.Text = "TECHNOLOGY STORE MANAGEMENT SOFTWARE";
             // 
             // guna2HtmlLabel1
             // 
+            this.guna2HtmlLabel1.AutoSize = false;
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Times New Roman", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(165, 193);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(162, 195);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(341, 57);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(500, 57);
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "WELCOME TO";
             // 
@@ -325,7 +326,7 @@
             this.guna2HtmlLabel4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.guna2HtmlLabel4.Location = new System.Drawing.Point(146, 59);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(290, 79);
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(302, 79);
             this.guna2HtmlLabel4.TabIndex = 37;
             this.guna2HtmlLabel4.Text = "LOGIN";
             // 

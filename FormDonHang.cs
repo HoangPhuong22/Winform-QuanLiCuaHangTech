@@ -424,7 +424,9 @@ namespace QLCuaHangBanDoCongNGhe
                 MessageBox.Show("Số lượng sản phẩm phải lớn hơn 0");
             }
         }
-        
+        public static string MHD = "";
+        public static string sdt = "";
+        public static string tenkh = "";
         private void btnXuatHoaDon_Click(object sender, EventArgs e)
         {
             string select = "UPDATE tHoaDonBan " +
@@ -434,7 +436,8 @@ namespace QLCuaHangBanDoCongNGhe
                          "WHERE tHoaDonBan.MaHoaDon = '" + mhd + "'";
             dataConnect.DataChange(select);
 
-            mhd = "";
+            sdt = txtSoDienThoai.Text;
+            tenkh = txtTenKhachHang.Text;
             btnThem.Enabled = true;
             slchitiet = 0;
             txtTimKiemSDT.Text = "";
@@ -451,7 +454,13 @@ namespace QLCuaHangBanDoCongNGhe
 
             // Cap Nhat tong tien
 
-            
+
+            // Tạo một instance của FormXuatHD
+            FormXuatHD formXuatHD = new FormXuatHD();
+            MHD = mhd;
+            formXuatHD.ShowDialog();
+            mhd = "";
+            // Hiển thị màn hình in
 
         }
 
