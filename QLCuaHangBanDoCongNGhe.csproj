@@ -56,11 +56,41 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataConnect.cs" />
+    <Compile Include="FAdminCH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FAdminCH.Designer.cs">
+      <DependentUpon>FAdminCH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FAdminLSPTH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FAdminLSPTH.Designer.cs">
+      <DependentUpon>FAdminLSPTH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FAdminSP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FAdminSP.Designer.cs">
+      <DependentUpon>FAdminSP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FAdminTK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FAdminTK.Designer.cs">
+      <DependentUpon>FAdminTK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdmin.Designer.cs">
+      <DependentUpon>FormAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="FormDonHang.cs">
       <SubType>Form</SubType>
@@ -94,8 +124,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FAdminCH.resx">
+      <DependentUpon>FAdminCH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FAdminLSPTH.resx">
+      <DependentUpon>FAdminLSPTH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FAdminSP.resx">
+      <DependentUpon>FAdminSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FAdminTK.resx">
+      <DependentUpon>FAdminTK.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAdmin.resx">
+      <DependentUpon>FormAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDonHang.resx">
       <DependentUpon>FormDonHang.cs</DependentUpon>

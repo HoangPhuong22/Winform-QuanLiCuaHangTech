@@ -116,5 +116,9 @@ namespace QLCuaHangBanDoCongNGhe
             }
         }
 
+        private void dtgHoaDonKH_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -189,6 +189,7 @@
             this.dtgHoaDonKH.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dtgHoaDonKH.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dtgHoaDonKH.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgHoaDonKH_CellClick);
+            this.dtgHoaDonKH.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgHoaDonKH_CellContentClick);
             // 
             // guna2CircleButton2
             // 
@@ -211,7 +212,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(286, 44);
+            this.label3.Location = new System.Drawing.Point(285, 52);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 22);
             this.label3.TabIndex = 26;
@@ -251,11 +252,13 @@
             // 
             // ltbHoaDon
             // 
+            this.ltbHoaDon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ltbHoaDon.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ltbHoaDon.FormattingEnabled = true;
-            this.ltbHoaDon.ItemHeight = 16;
+            this.ltbHoaDon.ItemHeight = 26;
             this.ltbHoaDon.Location = new System.Drawing.Point(584, 301);
             this.ltbHoaDon.Name = "ltbHoaDon";
-            this.ltbHoaDon.Size = new System.Drawing.Size(442, 292);
+            this.ltbHoaDon.Size = new System.Drawing.Size(442, 290);
             this.ltbHoaDon.TabIndex = 29;
             this.ltbHoaDon.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 

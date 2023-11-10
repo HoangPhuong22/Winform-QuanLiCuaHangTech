@@ -64,3 +64,8 @@ D:\C#\QLCuaHangBanDoCongNGhe\bin\Debug\vi\Humanizer.resources.dll
 D:\C#\QLCuaHangBanDoCongNGhe\bin\Debug\zh-CN\Humanizer.resources.dll
 D:\C#\QLCuaHangBanDoCongNGhe\bin\Debug\zh-Hans\Humanizer.resources.dll
 D:\C#\QLCuaHangBanDoCongNGhe\bin\Debug\zh-Hant\Humanizer.resources.dll
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FAdminCH.resources
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FormAdmin.resources
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FAdminLSPTH.resources
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FAdminSP.resources
+D:\C#\QLCuaHangBanDoCongNGhe\obj\Debug\QLCuaHangBanDoCongNGhe.FAdminTK.resources

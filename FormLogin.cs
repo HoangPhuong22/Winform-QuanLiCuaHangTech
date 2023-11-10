@@ -36,16 +36,25 @@ namespace QLCuaHangBanDoCongNGhe
                 TenCuahang = cbCuaHang.SelectedItem.ToString();
                 TaiKhoan = txtTaiKhoan.Text;
                 string MatKhau = txtMatKhau.Text;
-                string select = "SELECT ch.MaCuaHang as MaCuaHang ,ch.DiaChi as DiaChi, nv.MaNhanVien as MaNhanVien FROM tTaiKhoan tk JOIN tNhanVien nv ON nv.UserName = tk.UserName JOIN tCuaHang ch ON ch.MaCuaHang = nv.MaCuaHang WHERE ch.TenCuahang = N'" + TenCuahang + "' AND tk.UserName = N'" + TaiKhoan + "' AND tk.PassWord = '" + MatKhau + "'";
+                string select = "SELECT ch.MaCuaHang as MaCuaHang ,ch.DiaChi as DiaChi, nv.MaNhanVien as MaNhanVien, tk.Role FROM tTaiKhoan tk JOIN tNhanVien nv ON nv.UserName = tk.UserName JOIN tCuaHang ch ON ch.MaCuaHang = nv.MaCuaHang WHERE ch.TenCuahang = N'" + TenCuahang + "' AND tk.UserName = N'" + TaiKhoan + "' AND tk.PassWord = '" + MatKhau + "'";
 
                 DataTable result = data.DataReader(select);
                 if (result.Rows.Count > 0)
                 {
-                    MaCH = result.Rows[0]["MaCuaHang"].ToString();
-                    DiaChiCH = result.Rows[0]["DiaChi"].ToString();
-                    MaNhanVien = result.Rows[0]["MaNhanVien"].ToString();
-                    FormMain form = new FormMain();
-                    form.ShowDialog();
+                    if (result.Rows[0]["Role"].ToString() == "Admin")
+                    {
+                        FormAdmin form = new FormAdmin();
+                        form.ShowDialog();
+                        this.Hide();
+                    }   
+                    else
+                    {
+                        MaCH = result.Rows[0]["MaCuaHang"].ToString();
+                        DiaChiCH = result.Rows[0]["DiaChi"].ToString();
+                        MaNhanVien = result.Rows[0]["MaNhanVien"].ToString();
+                        FormMain form = new FormMain();
+                        form.ShowDialog();
+                    }    
                 }
                 else
                 {
@@ -71,6 +80,16 @@ namespace QLCuaHangBanDoCongNGhe
             {
                 cbCuaHang.Items.Add(row["TenCuaHang"]);
             }
+        }
+
+        private void txtMatKhau_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbCuaHang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

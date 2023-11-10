@@ -30,7 +30,7 @@ namespace QLCuaHangBanDoCongNGhe
             panelBody.Controls.Add(form);
             panelBody.Tag = form;
             form.BringToFront();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void btnDonHang_Click(object sender, EventArgs e)
