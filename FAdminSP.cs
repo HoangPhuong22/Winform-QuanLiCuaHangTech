@@ -296,6 +296,7 @@ namespace QLCuaHangBanDoCongNGhe
         }
         private void btnMua_Click(object sender, EventArgs e)
         {
+           
             if(cbCH.SelectedItem == null)
             {
                 MessageBox.Show("Vui lòng chọn cửa hàng để nhập hàng!");
@@ -370,6 +371,8 @@ namespace QLCuaHangBanDoCongNGhe
             DataTable dt = data.DataReader(select);
             dtgvHoaDon.DataSource = dt;
             LoadHoaDon();
+            cbNCC.Enabled = false;
+            cbCuaHang.Enabled = false;
         }
         void LoadHoaDon()
         {
@@ -383,6 +386,21 @@ namespace QLCuaHangBanDoCongNGhe
         private void nmSLN_ValueChanged(object sender, EventArgs e)
         {
             txtTongTienNhap.Text = (nmSLN.Value * Convert.ToDecimal(txtDonGiaNhap.Text)).ToString();
+        }
+        public static string MHD = "";
+        public static string NCC = "";
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            MHD = mhdn;
+            mhdn = "";
+
+            NCC = cbNCC.SelectedItem.ToString();
+            cbNCC.Enabled = true;
+            cbCuaHang.Enabled = true;
+
+            FXuatHDN f = new FXuatHDN();
+            f.ShowDialog();
         }
     }
 }

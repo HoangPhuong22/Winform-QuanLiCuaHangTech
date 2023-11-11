@@ -70,3 +70,4 @@ D:\Winform-QuanLiCuaHangTech\obj\Debug\QLCuaHangBanDoCongNGhe.csproj.CopyComplet
 D:\Winform-QuanLiCuaHangTech\obj\Debug\QLCuaHangBanDoCongNGhe.exe
 D:\Winform-QuanLiCuaHangTech\obj\Debug\QLCuaHangBanDoCongNGhe.pdb
 D:\Winform-QuanLiCuaHangTech\obj\Debug\QLCuaHangBanDoCongNGhe.FormXuatHD.resources
+D:\Winform-QuanLiCuaHangTech\obj\Debug\QLCuaHangBanDoCongNGhe.FXuatHDN.resources

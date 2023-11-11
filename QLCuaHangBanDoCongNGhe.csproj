@@ -128,6 +128,12 @@
     <Compile Include="FormXuatHD.Designer.cs">
       <DependentUpon>FormXuatHD.cs</DependentUpon>
     </Compile>
+    <Compile Include="FXuatHDN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FXuatHDN.Designer.cs">
+      <DependentUpon>FXuatHDN.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FAdminCH.resx">
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormXuatHD.resx">
       <DependentUpon>FormXuatHD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FXuatHDN.resx">
+      <DependentUpon>FXuatHDN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

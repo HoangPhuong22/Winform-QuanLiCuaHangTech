@@ -26,6 +26,8 @@ namespace QLCuaHangBanDoCongNGhe
         public static string MaCH { get; set; }
         public static string AnhNhanVien { get; set ; }
         public static string TenNhanVien { get ; set ; }
+        public static string SDT { get; set; }
+
         private void guna2HtmlLabel2_Click(object sender, EventArgs e)
         {
 
@@ -38,7 +40,7 @@ namespace QLCuaHangBanDoCongNGhe
                 TenCuahang = cbCuaHang.SelectedItem.ToString();
                 TaiKhoan = txtTaiKhoan.Text;
                 string MatKhau = txtMatKhau.Text;
-                string select = "SELECT nv.TrangThai,ch.MaCuaHang as MaCuaHang ,ch.DiaChi as DiaChi, nv.MaNhanVien as MaNhanVien, tk.Role, nv.AnhNhanVien, nv.TenNhanVien FROM tTaiKhoan tk JOIN tNhanVien nv ON nv.UserName = tk.UserName JOIN tCuaHang ch ON ch.MaCuaHang = nv.MaCuaHang WHERE ch.TenCuahang = N'" + TenCuahang + "' AND tk.UserName = N'" + TaiKhoan + "' AND tk.PassWord = '" + MatKhau + "'";
+                string select = "SELECT nv.SoDienThoai,nv.TrangThai,ch.MaCuaHang as MaCuaHang ,ch.DiaChi as DiaChi, nv.MaNhanVien as MaNhanVien, tk.Role, nv.AnhNhanVien, nv.TenNhanVien FROM tTaiKhoan tk JOIN tNhanVien nv ON nv.UserName = tk.UserName JOIN tCuaHang ch ON ch.MaCuaHang = nv.MaCuaHang WHERE ch.TenCuahang = N'" + TenCuahang + "' AND tk.UserName = N'" + TaiKhoan + "' AND tk.PassWord = '" + MatKhau + "'";
 
                 DataTable result = data.DataReader(select);
                 if (result.Rows.Count > 0)
@@ -50,6 +52,8 @@ namespace QLCuaHangBanDoCongNGhe
                         MaNhanVien = result.Rows[0]["MaNhanVien"].ToString();
                         AnhNhanVien = result.Rows[0]["AnhNhanVien"].ToString();
                         TenNhanVien = result.Rows[0]["TenNhanVien"].ToString();
+                        SDT = result.Rows[0]["SoDienThoai"].ToString();
+
                         FormAdmin form = new FormAdmin();
                         form.ShowDialog();
                       
@@ -61,6 +65,8 @@ namespace QLCuaHangBanDoCongNGhe
                         MaNhanVien = result.Rows[0]["MaNhanVien"].ToString();
                         AnhNhanVien = result.Rows[0]["AnhNhanVien"].ToString();
                         TenNhanVien = result.Rows[0]["TenNhanVien"].ToString();
+                        SDT = result.Rows[0]["SoDienThoai"].ToString();
+
                         FormMain form = new FormMain();
                         form.ShowDialog();
                     }  
